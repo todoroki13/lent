@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <p>設備編號：{{ logitems.serial}}</p>
+  <p>型號：<a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a></p>
+  <p>財產編號：{{ logitems.tenure }}</p>
+  <p>備註：{{ logitems.remark|linebreaks }}</p>
+  <p>狀態：{{ logitems.get_eqpst_display }}</p>
+</div>
+{% endblock %}

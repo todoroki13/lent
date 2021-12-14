@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <p>型號：{{ logtype.type }}</p>
+  <p>購買時間：{{ logtype.buydate }}</p>
+  <p>詳細規格：{{ logtype.detail|linebreaks }}</p>
+</div>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th>設備編號</th>
+      <th>型號</th>
+      <th>財產編號</th>
+      <th>備註</th>
+      <th>狀態</th>
+    </tr>
+  </thead>
+  <a href="/log/createitem">新增設備</a>
+  <tbody>
+    {% for item in logitems_list %}
+    <tr>
+      <td>
+        <a href="/log/item/{{ item.id }}">{{ item.serial }}</a>
+      </td>
+      <td>{{ item.itemtype }}</td>
+      <td>{{ item.tenure }}</td>
+      <td>{{ item.remark }}</td>
+      <td>{{ item.get_eqpst_display }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

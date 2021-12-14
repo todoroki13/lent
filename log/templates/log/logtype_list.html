@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th>型號</th>
+      <th>詳細規格</th>
+      <th>購買時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in logtype_list %}
+    <tr>
+      <td>
+        <a href="{{ item.id }}">{{ item.type }}</a>
+      </td>
+      <td>{{ item.detail|linebreaks}}</td>
+      <td>{{ item.buydate }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>在職狀況</th>
+      <th>科目/職稱</th>
+      <th>聯絡電話</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in logperson_list %}
+    <tr>
+      <td>
+        <a href="{{ item.id }}">{{ item.subject }}</a>
+      </td>
+      <td>{{ item.get_isatwork_display }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.phone }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

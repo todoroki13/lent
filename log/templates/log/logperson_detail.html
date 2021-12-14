@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <p>借用人：{{ logperson.subject }}</p>
+  <p>身分：{{ logperson.get_status_display }}</p>
+  <p>國高中部：{{ logperson.get_department_display }}</p>
+  <p>職稱/科目：{{ logperson.title }}</p>
+  <p>連絡電話：{{ logperson.phone }}</p>
+  <p>電子信箱：{{ logperson.mail }}</p>
+  <p>在職狀況：{{ logperson.get_isatwork_display }}</p>
+</div>
+{% endblock %}
