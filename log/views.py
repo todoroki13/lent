@@ -15,10 +15,14 @@ class LogListt(ListView):
 class LogViewt(DetailView):
   model = LogType
 
-  def get_context_data(self, **kwargs):
-    ctx = super().get_context_data(**kwargs)
-    ctx['logitems_list'] = LogItems.objects.filter(itemtype = self.kwargs['pk'])
-    return ctx
+  # def get_context_data(self, **kwargs):
+  #   ctx = super().get_context_data(**kwargs)
+  #   ctx['logitems_list'] = LogItems.objects.filter(itemtype = self.kwargs['pk'])
+  #   return ctx
+  def get_object(self):
+    logtype = super().get_object()
+    logtype.save()
+    return logtype
 
 class LogCreatet(CreateView):
   model = LogType
@@ -42,13 +46,14 @@ class LogCreatep(CreateView):
   fields = ['subject', 'status', 'department', 'title', 'phone', 'mail', 'isatwork']
 
   def get_success_url(self):
-    return "/log/person/{}/".format(self.object.id) 
+    return "/log/person/{}/".format(self.object.id)
+    
+  def get_object(self):
+    logperson = super().get_object()
+    logperson.save()
+    return logperson
 
 #--------------------------
-class LogListi(ListView):
-  model = LogItems
-  ordering = ['-id']
-
 class LogViewi(DetailView):
   model = LogItems
 
@@ -61,6 +66,20 @@ class LogCreatei(CreateView):
   #   data = {}
   #   data['itemtype'] = LogItems.itemtype
   #   return data
+
+  def get_success_url(self):
+    return "/log/item/{}/".format(self.object.id) 
+    
+  def get_object(self):
+    logitems = super().get_object()
+    logitems.save()
+    return logitems
+
+#--------------------------
+class LogCreateb(CreateView):
+  model = LogBorrow
+  # 新增時只顯示需填寫的部份欄位
+  fields = ['borrowsl', 'borrowps', 'borrowdt', 'backdt']
 
   def get_success_url(self):
     return "/log/item/{}/".format(self.object.id) 

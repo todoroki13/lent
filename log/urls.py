@@ -8,6 +8,7 @@ urlpatterns = [
     path('createtype/', LogCreatet.as_view(), name='log_create'),
     path('createperson/', LogCreatep.as_view(), name='log_create'),
     path('createitem/', LogCreatei.as_view(), name='log_create'),
+    path('createborrow/', LogCreateb.as_view(), name='log_create'),
     
     path('<int:pk>/', LogViewt.as_view(), name='log_view'),
     path('person/<int:pk>/', LogViewp.as_view(), name='log_view'),

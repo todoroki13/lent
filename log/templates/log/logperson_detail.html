@@ -9,4 +9,27 @@
   <p>電子信箱：{{ logperson.mail }}</p>
   <p>在職狀況：{{ logperson.get_isatwork_display }}</p>
 </div>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th>設備編號</th>
+      <th>借用人編號</th>
+      <th>借出日期</th>
+      <th>歸還日期</th>
+    </tr>
+  </thead>
+  <a href="/log/createborrow">新增借用紀錄</a>
+  <tbody>
+    {% for item in logperson.logborrow_set.all %}
+    <tr>
+      <td>
+        <a href="/log/item/{{ item.borrowsl.id }}">{{ item.borrowsl }}</a>
+      </td>
+      <td>{{ item.borrowps }}</a></td>
+      <td>{{ item.borrowdt }}</td>
+      <td>{{ item.backdt }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

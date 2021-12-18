@@ -17,7 +17,7 @@
   </thead>
   <a href="/log/createitem">新增設備</a>
   <tbody>
-    {% for item in logitems_list %}
+    {% for item in logtype.logitems_set.all %}
     <tr>
       <td>
         <a href="/log/item/{{ item.id }}">{{ item.serial }}</a>

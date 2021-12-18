@@ -7,4 +7,27 @@
   <p>備註：{{ logitems.remark|linebreaks }}</p>
   <p>狀態：{{ logitems.get_eqpst_display }}</p>
 </div>
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <th>設備編號</th>
+      <th>借用人編號</th>
+      <th>借出日期</th>
+      <th>歸還日期</th>
+    </tr>
+  </thead>
+  <a href="/log/createborrow">新增借用紀錄</a>
+  <tbody>
+    {% for item in logitems.logborrow_set.all %}
+    <tr>
+      <td>{{ item.borrowsl }}</td>
+      <td>
+        <a href="/log/person/{{ item.borrowps.id }}">{{ item.borrowps }}</a>
+      </td>
+      <td>{{ item.borrowdt }}</td>
+      <td>{{ item.backdt }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
