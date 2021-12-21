@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.fields import DateField
+from datetime import date
+from django.utils import timezone
 
 # Create your models here.
 class LogPerson(models.Model):
@@ -90,7 +92,7 @@ class LogBorrow(models.Model):
   #借用人
   borrowps = models.ForeignKey(LogPerson, on_delete = models.CASCADE, null=True, verbose_name="借用人")
   #借出日期
-  borrowdt = models.DateField('借出時間')
+  borrowdt = models.DateField('借出時間', default=date.today)
   #歸還日期
   backdt = models.DateField('歸還日期', blank=True, null=True)
   def __str__(self):

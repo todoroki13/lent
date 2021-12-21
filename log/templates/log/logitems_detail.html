@@ -16,7 +16,7 @@
       <th>歸還日期</th>
     </tr>
   </thead>
-  <a href="/log/createborrow">新增借用紀錄</a>
+  <a href="/log/createborrows/{{ logitems.id }}">新增借用紀錄</a>
   <tbody>
     {% for item in logitems.logborrow_set.all %}
     <tr>
