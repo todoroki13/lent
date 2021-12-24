@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="card">
-  <p>借用人：{{ logperson.subject }}</p>
+  <p>借用人：{{ logperson.subject }} | 
+    <a href="/log/person/{{ logperson.id }}/update">編輯</a> | 
+    <a href="/log/person/{{ logperson.id }}/delete">刪除</a>
+  </p>
   <p>身分：{{ logperson.get_status_display }}</p>
   <p>國高中部：{{ logperson.get_department_display }}</p>
   <p>職稱/科目：{{ logperson.title }}</p>
@@ -16,6 +19,8 @@
       <th>借用人編號</th>
       <th>借出日期</th>
       <th>歸還日期</th>
+      <th>動作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <a href="/log/createborrowp/{{ logperson.id }}">新增借用紀錄</a>
@@ -28,6 +33,8 @@
       <td>{{ item.borrowps }}</a></td>
       <td>{{ item.borrowdt }}</td>
       <td>{{ item.backdt }}</td>
+      <td><a href="/log/borrow/{{ item.id }}/update">編輯</a></td>
+      <td><a href="/log/borrow/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="card">
-  <p>型號：{{ logtype.type }}</p>
+  <p>型號：{{ logtype.type }} | 
+    <a href="/log/{{ logtype.id }}/update">編輯</a> | 
+    <a href="/log/{{ logtype.id }}/delete">刪除</a>
+  </p>
   <p>購買時間：{{ logtype.buydate }}</p>
   <p>詳細規格：{{ logtype.detail|linebreaks }}</p>
 </div>
@@ -13,9 +16,11 @@
       <th>財產編號</th>
       <th>備註</th>
       <th>狀態</th>
+      <th>動作</th>
+      <th>刪除</th>
     </tr>
   </thead>
-  <a href="/log/createitem">新增設備</a>
+  <a href="/log/createitemsl/{{ logtype.id }}">新增設備</a>
   <tbody>
     {% for item in logtype.logitems_set.all %}
     <tr>
@@ -26,6 +31,8 @@
       <td>{{ item.tenure }}</td>
       <td>{{ item.remark }}</td>
       <td>{{ item.get_eqpst_display }}</td>
+      <td><a href="/log/item/{{ item.id }}/update">編輯</a></td>
+      <td><a href="/log/item/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

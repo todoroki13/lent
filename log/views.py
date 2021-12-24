@@ -32,6 +32,17 @@ class LogCreatet(CreateView):
   def get_success_url(self):
     return "/log/{}/".format(self.object.id)
 
+class LogUpdatet(UpdateView):
+  model = LogType
+  fields = ['type', 'buydate', 'detail']
+  
+  def get_success_url(self):
+    return "/log/{}/".format(self.object.id)
+
+class LogDeletet(DeleteView):
+  model = LogType
+  success_url = '/log/'
+
 #--------------------------
 class LogListp(ListView):
   model = LogPerson
@@ -53,6 +64,17 @@ class LogCreatep(CreateView):
     logperson.save()
     return logperson
 
+class LogUpdatep(UpdateView):
+  model = LogPerson
+  fields = ['subject', 'status', 'department', 'title', 'phone', 'mail', 'isatwork']
+  
+  def get_success_url(self):
+    return "/log/person/{}/".format(self.object.id)
+
+class LogDeletep(DeleteView):
+  model = LogPerson
+  success_url = '/log/person'
+
 #--------------------------
 class LogViewi(DetailView):
   model = LogItems
@@ -70,37 +92,78 @@ class LogCreatei(CreateView):
     logitems.save()
     return logitems
 
+class LogCreateisl(CreateView):
+  model = LogItems
+  # 新增時只顯示需填寫的部份欄位
+  fields = ['serial', 'tenure', 'remark', 'eqpst']
+
+  def form_valid(self, form):
+    form.instance.itemtype = LogType.objects.get(id=self.kwargs['iid'])
+    return super().form_valid(form)
+
+  def get_success_url(self):
+    return "/log/item/{}/".format(self.object.id) 
+    
+  def get_object(self):
+    logitems = super().get_object()
+    logitems.save()
+    return logitems
+
+class LogUpdatei(UpdateView):
+  model = LogItems
+  fields = ['serial', 'itemtype', 'tenure', 'remark', 'eqpst']
+  
+  def get_success_url(self):
+    return "/log/item/{}/".format(self.object.id)
+
+class LogDeletei(DeleteView):
+  model = LogItems
+
+  def get_success_url(self):
+    return "/log/{}/".format(self.object.itemtype.id)
+
 #--------------------------
 class LogCreateb(CreateView):
   model = LogBorrow
   # 新增時只顯示需填寫的部份欄位
-  fields = ['borrowsl', 'borrowps', 'borrowdt', 'backdt']
+  fields = ['borrowsl', 'borrowps', 'borrowdt']
 
   def get_success_url(self):
-    return "/log/".format(self.object.id) 
+    return "/log/item/{}".format(self.object.borrowsl.id) 
 
-#--------------------------
 class LogCreatebs(CreateView):
   model = LogBorrow
   # 新增時只顯示需填寫的部份欄位
-  fields = ['borrowps', 'borrowdt', 'backdt']
+  fields = ['borrowps', 'borrowdt']
 
   def form_valid(self, form):
     form.instance.borrowsl = LogItems.objects.get(id=self.kwargs['aid'])
     return super().form_valid(form)
 
   def get_success_url(self):
-    return "/log/".format(self.object.id) 
+    return "/log/item/{}".format(self.object.borrowsl.id) 
 
-#--------------------------
 class LogCreatebp(CreateView):
   model = LogBorrow
   # 新增時只顯示需填寫的部份欄位
-  fields = ['borrowsl', 'borrowdt', 'backdt']
+  fields = ['borrowsl', 'borrowdt']
 
   def form_valid(self, form):
     form.instance.borrowps = LogPerson.objects.get(id=self.kwargs['eid'])
     return super().form_valid(form)
 
   def get_success_url(self):
-    return "/log/".format(self.object.id) 
+    return "/log/item/{}".format(self.object.borrowsl.id)  
+
+class LogUpdateb(UpdateView):
+  model = LogBorrow
+  fields = ['borrowsl', 'borrowps', 'borrowdt', 'backdt']
+  
+  def get_success_url(self):
+    return "/log/item/{}/".format(self.object.borrowsl.id)
+
+class LogDeleteb(DeleteView):
+  model = LogBorrow
+
+  def get_success_url(self):
+    return "/log/item/{}/".format(self.object.borrowsl.id)

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <p>確認刪除借用紀錄：</p>
+    <p>產品編號：{{ logborrow.borrowsl }}</p>
+    <p>借用人員：{{ logborrow.borrowps }}</p>
+    <p>借出日期：{{ logborrow.borrowdt }}</p>
+    <p>歸還日期：{{ logborrow.backdt }}</p>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="確認刪除">
+</form>
+
+{% endblock  %}

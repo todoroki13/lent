@@ -6,6 +6,8 @@
       <th>型號</th>
       <th>詳細規格</th>
       <th>購買時間</th>
+      <th>動作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +18,8 @@
       </td>
       <td>{{ item.detail|linebreaks}}</td>
       <td>{{ item.buydate }}</td>
+      <td><a href="/log/{{ item.id }}/update">編輯</a></td>
+      <td><a href="/log/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

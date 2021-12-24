@@ -7,6 +7,8 @@
       <th>在職狀況</th>
       <th>科目/職稱</th>
       <th>聯絡電話</th>
+      <th>動作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +20,8 @@
       <td>{{ item.get_isatwork_display }}</td>
       <td>{{ item.title }}</td>
       <td>{{ item.phone }}</td>
+      <td><a href="/log/person/{{ item.id }}/update">編輯</a></td>
+      <td><a href="/log/person/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

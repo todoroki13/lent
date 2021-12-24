@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="card">
-  <p>設備編號：{{ logitems.serial}}</p>
+  <p>設備編號：{{ logitems.serial}} | 
+    <a href="/log/item/{{ logitems.id }}/update">編輯</a> | 
+    <a href="/log/item/{{ logitems.id }}/delete">刪除</a>
+  </p>
   <p>型號：<a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a></p>
   <p>財產編號：{{ logitems.tenure }}</p>
   <p>備註：{{ logitems.remark|linebreaks }}</p>
@@ -14,6 +17,8 @@
       <th>借用人編號</th>
       <th>借出日期</th>
       <th>歸還日期</th>
+      <th>動作</th>
+      <th>刪除</th>
     </tr>
   </thead>
   <a href="/log/createborrows/{{ logitems.id }}">新增借用紀錄</a>
@@ -26,6 +31,8 @@
       </td>
       <td>{{ item.borrowdt }}</td>
       <td>{{ item.backdt }}</td>
+      <td><a href="/log/borrow/{{ item.id }}/update">編輯</a></td>
+      <td><a href="/log/borrow/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

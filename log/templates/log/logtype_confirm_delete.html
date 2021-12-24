@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    確認刪除型號[{{ logtype.type }}]？<br>
+    其相關設備和借用紀錄將會被刪除！
+    <p>詳細規格：{{ logtype.detail|linebreaks }}</p>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="確認刪除">
+</form>
+
+{% endblock  %}
