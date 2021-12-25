@@ -6,10 +6,15 @@
     <p>借用人員：{{ logborrow.borrowps }}</p>
     <p>借出日期：{{ logborrow.borrowdt }}</p>
     <p>歸還日期：{{ logborrow.backdt }}</p>
+    <p></p>
 </div>
+
 <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="確認刪除">
+    <input class="btn btn-danger" type="submit" value="確認刪除">
+    <a href="/log/item/{{ logborrow.borrowsl.id }}" class="cancel">取消刪除</a>
 </form>
+
+
 
 {% endblock  %}

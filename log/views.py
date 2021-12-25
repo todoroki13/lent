@@ -5,12 +5,15 @@ from django.views.generic import *
 from django.urls import reverse
 from .models import LogItems, LogPerson, LogType, LogBorrow
 from django.contrib.auth.mixins import LoginRequiredMixin
- 
+
+def style(request):
+  return render(request, 'base.html')
 
 # Create your views here.
 class LogListt(ListView):
   model = LogType
   ordering = ['-id']
+  paginate_by = 15
 
 class LogViewt(DetailView):
   model = LogType
@@ -47,6 +50,7 @@ class LogDeletet(DeleteView):
 class LogListp(ListView):
   model = LogPerson
   ordering = ['-id']
+  paginate_by = 15
 
 class LogViewp(DetailView):
   model = LogPerson

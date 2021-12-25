@@ -2,17 +2,42 @@
 <html lang="zh-hant">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible  " content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <title>設備借用管理系統</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <a href="/log">回到型號列表</a>
-    <a href="/log/person">回到借用人列表</a>
-    <a href="/log/createperson">新增借用人</a>
-    <a href="/log/createtype">新增型號</a>
-    <a href="/log/createitem">新增設備</a>
-    <a href="/log/createborrow">新增借用紀錄</a>
-    {% block content %}{% endblock %}
+    <div class="wrapper">
+        <div class="top">
+            <h2 class="name">
+                大直高中設備借用系統
+                <span class="smalltext">Dazhi High School Equipment Borrowing System</span>
+                </h2>
+        </div>
+        {% include "navbar.html" %}
+        <div class="container" >
+            {% block content %}{% endblock %}
+        </div>
+        <div class="down"></div>
+        <footer class="footer">
+            <a href="https://web.dcsh.tp.edu.tw/" target="_blank">臺北市立大直高級中學</a>
+            <p>|</p>
+            <p>110學年度</p>
+            <p>|</p>
+            <p>校定必修專題寫作</p>
+            <p>|</p>
+            <a href="https://ecourse.dcsh.tp.edu.tw/enrol/index.php?id=664" target="_blank">網站規畫與建置實務</a>
+            <p>|</p>
+            <p>2年5班33號 陳竑鈞</p>
+        </footer>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </body>
 </html>

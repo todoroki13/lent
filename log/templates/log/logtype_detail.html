@@ -6,11 +6,14 @@
     <a href="/log/{{ logtype.id }}/delete">刪除</a>
   </p>
   <p>購買時間：{{ logtype.buydate }}</p>
-  <p>詳細規格：{{ logtype.detail|linebreaks }}</p>
+  <p>詳細規格：</p>
+  <div class="disc">
+    <p>{{ logtype.detail|linebreaks }}</p>
+  </div>
 </div>
 <table class="table table-sm table-hover">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th>設備編號</th>
       <th>型號</th>
       <th>財產編號</th>
@@ -24,15 +27,15 @@
   <tbody>
     {% for item in logtype.logitems_set.all %}
     <tr>
-      <td>
+      <td class="text-center">
         <a href="/log/item/{{ item.id }}">{{ item.serial }}</a>
       </td>
-      <td>{{ item.itemtype }}</td>
-      <td>{{ item.tenure }}</td>
+      <td class="text-center">{{ item.itemtype }}</td>
+      <td class="text-center">{{ item.tenure }}</td>
       <td>{{ item.remark }}</td>
-      <td>{{ item.get_eqpst_display }}</td>
-      <td><a href="/log/item/{{ item.id }}/update">編輯</a></td>
-      <td><a href="/log/item/{{ item.id }}/delete">刪除</a></td>
+      <td class="text-center">{{ item.get_eqpst_display }}</td>
+      <td class="text-center"><a href="/log/item/{{ item.id }}/update">編輯</a></td>
+      <td class="text-center"><a href="/log/item/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>

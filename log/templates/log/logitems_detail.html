@@ -7,14 +7,17 @@
   </p>
   <p>型號：<a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a></p>
   <p>財產編號：{{ logitems.tenure }}</p>
-  <p>備註：{{ logitems.remark|linebreaks }}</p>
+  <p>備註：</p>
+  <div class="disc">
+    <p>{{ logitems.remark|linebreaks }}</p>
+  </div>
   <p>狀態：{{ logitems.get_eqpst_display }}</p>
 </div>
 <table class="table table-sm table-hover">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th>設備編號</th>
-      <th>借用人編號</th>
+      <th>借用人</th>
       <th>借出日期</th>
       <th>歸還日期</th>
       <th>動作</th>
@@ -24,7 +27,7 @@
   <a href="/log/createborrows/{{ logitems.id }}">新增借用紀錄</a>
   <tbody>
     {% for item in logitems.logborrow_set.all %}
-    <tr>
+    <tr class="text-center">
       <td>{{ item.borrowsl }}</td>
       <td>
         <a href="/log/person/{{ item.borrowps.id }}">{{ item.borrowps }}</a>

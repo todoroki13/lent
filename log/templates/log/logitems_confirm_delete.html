@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-    確認刪除設備[{{ logitems.serial }}](型號：{{ logitems.itemtype }})？<br>
-    其相關借用紀錄將會被刪除！
-    <p>設備備註：{{ logitems.remark|linebreaks }}</p>
+    確認刪除設備[ <strong>{{ logitems.serial }}</strong> ] (型號：{{ logitems.itemtype }})？<br>
+    其相關借用紀錄將會被刪除！<br><br>
+    設備備註：
+    <div class="disc">
+        <p>{{ logitems.remark|linebreaks }}</p>
+    </div>
+    <p></p>
 </div>
 <form action="" method="POST">
     {% csrf_token %}
-    <input type="submit" value="確認刪除">
+    <input class="btn btn-danger" type="submit" value="確認刪除">
+    <a href="/log/item/{{ logitems.id }}" class="cancel">取消刪除</a>
 </form>
 
 {% endblock  %}

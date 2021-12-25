@@ -2,7 +2,7 @@
 {% block content %}
 <table class="table table-sm table-hover">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th>姓名</th>
       <th>在職狀況</th>
       <th>科目/職稱</th>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     {% for item in logperson_list %}
-    <tr>
+    <tr class="text-center">
       <td>
         <a href="{{ item.id }}">{{ item.subject }}</a>
       </td>
@@ -26,4 +26,5 @@
     {% endfor %}
   </tbody>
 </table>
+{% include 'pagination.html' %}
 {% endblock %}

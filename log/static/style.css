@@ -1,0 +1,113 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 18px;
+    font-family: 微軟正黑體;
+}
+
+body{
+    position: relative;
+}
+
+a{
+  color: rgb(13, 141, 9);
+  font-weight: 900;
+  text-decoration: initial;
+}
+
+a:hover{
+    color: rgb(13, 141, 9);
+}
+
+
+.top{
+    background-image: url(https://web.dcsh.tp.edu.tw/sites/default/files/page/2014/05/10484/14040.jpg);
+    background-position:center;
+    background-size: cover ;
+    height:270px;
+    position: relative;
+  }
+
+.top .name{
+  font-size: 30px;
+  position: absolute;
+  margin: 0;
+  left:0;
+  bottom:0;
+  padding: 5px 15px;
+  letter-spacing: 2px;
+  color: white;
+  font-weight: 300;
+  /*background-color: rgba(0,0,0,0.4);*/
+  background: linear-gradient(transparent 0%, black 100%);
+  width: 100%;
+  box-sizing:border-box;
+  padding-top:30px;
+  padding-bottom:15px;
+}
+
+.top .name .smalltext{
+    font-size: 16px;
+}
+
+.wrapper {
+    /* 設定高度最小為100%, 如果內容區塊很多, 可以長大 */
+    min-height: 100%;
+    /* 位置設為relative, 作為footer區塊位置的參考 */
+    position: relative;
+}
+
+.down{
+    height: 90px;
+}
+
+.footer {
+    /* 設定footer的高度 */
+    height: 35px;
+    box-sizing: border-box;
+    /* 設定footer絕對位置在底部 */
+    position: absolute;
+    bottom: 0;
+    /* 展開footer寬度 */
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    justify-content: center;
+    box-shadow:0 0 15px rgba(0,0,0,0.1); 
+}
+
+.footer p,.footer a{
+    padding: 5px;
+    color: rgb(146, 146, 146);
+    font-size: 15px;
+    display: inline;
+}
+
+.card{
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 10px;
+}
+
+.cancel{
+    padding: 2px 5px;
+    margin-left: 20px;
+    text-decoration: none;
+    color: rgb(33, 165, 15);
+    background-color: rgb(215, 255, 203);
+    border-radius: 4px;
+}
+
+.cancel:hover{
+    color: rgb(33, 165, 15);
+    background-color: rgb(179, 252, 157);
+}
+
+.disc{
+    padding-left: 20px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 4px;
+}

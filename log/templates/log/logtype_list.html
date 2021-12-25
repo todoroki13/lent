@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<table class="table table-sm table-hover">
+<table class="table table-sm table-hover vertical-align: middle">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th>型號</th>
       <th>詳細規格</th>
       <th>購買時間</th>
@@ -12,16 +12,17 @@
   </thead>
   <tbody>
     {% for item in logtype_list %}
-    <tr>
-      <td>
+    <tr class="align-middle">
+      <td class="text-center">
         <a href="{{ item.id }}">{{ item.type }}</a>
       </td>
-      <td>{{ item.detail|linebreaks}}</td>
-      <td>{{ item.buydate }}</td>
-      <td><a href="/log/{{ item.id }}/update">編輯</a></td>
-      <td><a href="/log/{{ item.id }}/delete">刪除</a></td>
+      <td>{{ item.detail}}</td>
+      <td class="text-center">{{ item.buydate }}</td>
+      <td class="text-center"><a href="/log/{{ item.id }}/update">編輯</a></td>
+      <td class="text-center"><a href="/log/{{ item.id }}/delete">刪除</a></td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+{% include 'pagination.html' %}
 {% endblock %}

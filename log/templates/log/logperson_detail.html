@@ -14,7 +14,7 @@
 </div>
 <table class="table table-sm table-hover">
   <thead>
-    <tr>
+    <tr class="text-center">
       <th>設備編號</th>
       <th>借用人編號</th>
       <th>借出日期</th>
@@ -26,7 +26,7 @@
   <a href="/log/createborrowp/{{ logperson.id }}">新增借用紀錄</a>
   <tbody>
     {% for item in logperson.logborrow_set.all %}
-    <tr>
+    <tr class="text-center">
       <td>
         <a href="/log/item/{{ item.borrowsl.id }}">{{ item.borrowsl }}</a>
       </td>
