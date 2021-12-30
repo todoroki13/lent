@@ -89,6 +89,23 @@ a:hover{
     margin-bottom: 10px;
 }
 
+.page{
+    display: flex;
+}
+
+.left{
+    width: 80%;
+}
+
+.side{
+    width: 15%;
+    height: min-content;
+    background-color: rgb(247, 247, 247);
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
 .cancel{
     padding: 2px 5px;
     margin-left: 20px;

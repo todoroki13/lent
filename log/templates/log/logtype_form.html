@@ -3,7 +3,32 @@
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <table class="table table-sm">
-  {{ form.as_table }}
+    <tbody>
+      <tr>
+        <th>
+          <label for="id_type">型號：</label>
+        </th>
+        <td>
+          <input type="text" name="type" maxlength="63" required id="id_type">
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="id_buydate">購買時間：</label>
+        </th>
+        <td>
+          <input type="date" name="buydate" required id="id_buydate">
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label for="id_detail">詳細規格：</label>
+        </th>
+        <td>
+          <textarea name="detail" cols="40" rows="10" maxlength="511" required="" id="id_detail"></textarea>
+        </td>
+      </tr>
+    </tbody>
   </table>
   <input class="btn btn-success" type="submit" value="送出" />   
 </form>

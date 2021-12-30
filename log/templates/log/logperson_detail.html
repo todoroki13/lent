@@ -32,7 +32,11 @@
       </td>
       <td>{{ item.borrowps }}</a></td>
       <td>{{ item.borrowdt }}</td>
+      {% if item.backdt %}
       <td>{{ item.backdt }}</td>
+      {% else %}
+      <td>尚未歸還</td>
+      {% endif %}
       <td><a href="/log/borrow/{{ item.id }}/update">編輯</a></td>
       <td><a href="/log/borrow/{{ item.id }}/delete">刪除</a></td>
     </tr>

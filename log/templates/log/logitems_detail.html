@@ -1,43 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="card">
-  <p>設備編號：{{ logitems.serial}} | 
-    <a href="/log/item/{{ logitems.id }}/update">編輯</a> | 
-    <a href="/log/item/{{ logitems.id }}/delete">刪除</a>
-  </p>
-  <p>型號：<a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a></p>
-  <p>財產編號：{{ logitems.tenure }}</p>
-  <p>備註：</p>
-  <div class="disc">
-    <p>{{ logitems.remark|linebreaks }}</p>
-  </div>
-  <p>狀態：{{ logitems.get_eqpst_display }}</p>
-</div>
-<table class="table table-sm table-hover">
-  <thead>
-    <tr class="text-center">
-      <th>設備編號</th>
-      <th>借用人</th>
-      <th>借出日期</th>
-      <th>歸還日期</th>
-      <th>動作</th>
-      <th>刪除</th>
-    </tr>
-  </thead>
-  <a href="/log/createborrows/{{ logitems.id }}">新增借用紀錄</a>
-  <tbody>
-    {% for item in logitems.logborrow_set.all %}
-    <tr class="text-center">
-      <td>{{ item.borrowsl }}</td>
-      <td>
-        <a href="/log/person/{{ item.borrowps.id }}">{{ item.borrowps }}</a>
-      </td>
-      <td>{{ item.borrowdt }}</td>
-      <td>{{ item.backdt }}</td>
-      <td><a href="/log/borrow/{{ item.id }}/update">編輯</a></td>
-      <td><a href="/log/borrow/{{ item.id }}/delete">刪除</a></td>
-    </tr>
+<div class="page">
+  <div class="side">
+    <a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a>：<br>
+    {% for item in logitems.itemtype.logitems_set.all %}
+    -<a href="/log/item/{{ item.id }}">{{ item.serial }}</a><br>
     {% endfor %}
-  </tbody>
-</table>
+  </div>
+  <div class="left">
+    <div class="card">
+      <p>設備編號：{{ logitems.serial}} | 
+        <a href="/log/item/{{ logitems.id }}/update">編輯</a> | 
+        <a href="/log/item/{{ logitems.id }}/delete">刪除</a>
+      </p>
+      <p>型號：<a href="/log/{{ logitems.itemtype.id }}">{{ logitems.itemtype }}</a></p>
+      <p>財產編號：{{ logitems.tenure }}</p>
+      <p>備註：</p>
+      <div class="disc">
+        <p>{{ logitems.remark|linebreaks }}</p>
+      </div>
+      <p>狀態：{{ logitems.get_eqpst_display }}</p>
+    </div>
+    <table class="table table-sm table-hover">
+      <thead>
+        <tr class="text-center">
+          <th>設備編號</th>
+          <th>借用人</th>
+          <th>借出日期</th>
+          <th>歸還日期</th>
+          <th>動作</th>
+          <th>刪除</th>
+        </tr>
+      </thead>
+      <a href="/log/createborrows/{{ logitems.id }}">新增借用紀錄</a>
+      <tbody>
+        {% for item in logitems.logborrow_set.all %}
+        <tr class="text-center">
+          <td>{{ item.borrowsl }}</td>
+          <td>
+            <a href="/log/person/{{ item.borrowps.id }}">{{ item.borrowps }}</a>
+          </td>
+          <td>{{ item.borrowdt }}</td>
+          {% if item.backdt %}
+          <td>{{ item.backdt }}</td>
+          {% else %}
+          <td>尚未歸還</td>
+          {% endif %}
+          <td><a href="/log/borrow/{{ item.id }}/update">編輯</a></td>
+          <td><a href="/log/borrow/{{ item.id }}/delete">刪除</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endblock %}
