@@ -5,6 +5,7 @@ from django.views.generic import *
 from django.urls import reverse
 from .models import LogItems, LogPerson, LogType, LogBorrow
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 
 def style(request):
   return render(request, 'base.html')
@@ -32,12 +33,32 @@ class LogCreatet(CreateView):
   # 新增時只顯示需填寫的部份欄位
   fields = ['type', 'buydate', 'detail']
   
+  def get_form(self):
+    form = super().get_form()   # 取得原本的表單定義
+    date_fields = ['buydate']    # 要修改的欄位名稱
+    for field in date_fields:
+        # form.fields[field] 就是表單上的欄位
+        # .widget 是用來描述它在頁面上的樣子
+        # 改用 forms.DateInput 元件來取代預設的 forms.TextInput 元件
+        # attrs 裡指定的屬性，最終會變成 render 後的 HTML 元素的屬性，以此例來說：
+        # 這個欄位最終輸出的 HTML 碼應該會變這樣: <input type="date">
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
+
   def get_success_url(self):
     return "/log/{}/".format(self.object.id)
 
 class LogUpdatet(UpdateView):
   model = LogType
   fields = ['type', 'buydate', 'detail']
+
+  
+  def get_form(self):
+    form = super().get_form()
+    date_fields = ['buydate']
+    for field in date_fields:
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
   
   def get_success_url(self):
     return "/log/{}/".format(self.object.id)
@@ -132,6 +153,13 @@ class LogCreateb(CreateView):
   # 新增時只顯示需填寫的部份欄位
   fields = ['borrowsl', 'borrowps', 'borrowdt']
 
+  def get_form(self):
+    form = super().get_form()
+    date_fields = ['borrowdt']
+    for field in date_fields:
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
+
   def get_success_url(self):
     return "/log/item/{}".format(self.object.borrowsl.id) 
 
@@ -139,6 +167,14 @@ class LogCreatebs(CreateView):
   model = LogBorrow
   # 新增時只顯示需填寫的部份欄位
   fields = ['borrowps', 'borrowdt']
+
+  
+  def get_form(self):
+    form = super().get_form()
+    date_fields = ['borrowdt']
+    for field in date_fields:
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
 
   def form_valid(self, form):
     form.instance.borrowsl = LogItems.objects.get(id=self.kwargs['aid'])
@@ -152,6 +188,14 @@ class LogCreatebp(CreateView):
   # 新增時只顯示需填寫的部份欄位
   fields = ['borrowsl', 'borrowdt']
 
+  
+  def get_form(self):
+    form = super().get_form()
+    date_fields = ['borrowdt']
+    for field in date_fields:
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
+
   def form_valid(self, form):
     form.instance.borrowps = LogPerson.objects.get(id=self.kwargs['eid'])
     return super().form_valid(form)
@@ -162,6 +206,13 @@ class LogCreatebp(CreateView):
 class LogUpdateb(UpdateView):
   model = LogBorrow
   fields = ['borrowsl', 'borrowps', 'borrowdt', 'backdt']
+
+  def get_form(self):
+    form = super().get_form()
+    date_fields = ['borrowdt', 'backdt']
+    for field in date_fields:
+        form.fields[field].widget = forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'})
+    return form
   
   def get_success_url(self):
     return "/log/item/{}/".format(self.object.borrowsl.id)
